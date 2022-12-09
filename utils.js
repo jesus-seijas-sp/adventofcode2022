@@ -7,6 +7,7 @@ const sumFirst = (arr, n) => sum(arr.slice(0, n));
 const loadTxt = fileName => fs.readFileSync(fileName, 'utf-8');
 const loadLines = fileName => loadTxt(fileName).split(/\r?\n/);
 const loadLinesSplitted = (fileName, char = ' ') => loadLines(fileName).map(line => line.split(char));
+const loadLinesSplittedMap = (fileName, char = ' ', fn) => loadLines(fileName).map(line => line.split(char).map(fn));
 const startsWith = (str, subs) => {
   subs = Array.isArray(subs) ? subs : [subs];
   return subs.some(x => str.startsWith(x));
@@ -23,5 +24,6 @@ module.exports = {
   loadLinesSplitted,
   startsWith,
   notStartsWith,
+  loadLinesSplittedMap,
 }
 
