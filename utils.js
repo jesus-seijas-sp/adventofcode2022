@@ -3,6 +3,7 @@ const fs = require('fs');
 const sort = arr => arr.sort((a, b) => a - b);
 const sortDesc = arr => arr.sort((a, b) => b - a);
 const sum = arr => arr.reduce((p, c) => p + c, 0);
+const mul = arr => arr.reduce((p, c) => p *= c, 1);
 const sumFirst = (arr, n) => sum(arr.slice(0, n));
 const loadTxt = fileName => fs.readFileSync(fileName, 'utf-8');
 const loadLines = fileName => loadTxt(fileName).split(/\r?\n/);
@@ -13,11 +14,23 @@ const startsWith = (str, subs) => {
   return subs.some(x => str.startsWith(x));
 }
 const notStartsWith = (str, subs) => !startsWith(str, subs);
+const range = (x) => [...Array(x).keys()];
+const rangeMap = (x, fn) => range(x).map(fn);
+const map2D = (grid, fn) => {
+  const result = [];
+  for (let y = 0, height = grid.length; y < height; y += 1) {
+    for (let x = 0, width = grid[y].length; x < width; x += 1) {
+      result.push(fn(x, y, grid[y][x], grid))
+    }
+  }
+  return result;  
+}
 
 module.exports = {
   sort,
   sortDesc,
   sum,
+  mul,
   sumFirst,
   loadTxt,
   loadLines,
@@ -25,5 +38,8 @@ module.exports = {
   startsWith,
   notStartsWith,
   loadLinesSplittedMap,
+  range,
+  rangeMap,
+  map2D,
 }
 
