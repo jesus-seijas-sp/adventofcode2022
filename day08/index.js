@@ -15,5 +15,5 @@ const dist = (arr, current) => {
   return arr.length;
 }
 const score = (x, y) => mul(cross(x, y).map(c => dist(c, grid[y][x])));
-console.log(sum(map2D(grid, visible)));
-console.log(Math.max(...map2D(grid, score)));
+console.log(`Part 1: ${sum(map2D(grid, visible))}`);
+console.log(`Part 2: ${Math.max(...map2D(grid, score))}`);
